@@ -30,18 +30,9 @@ std::string encrypt(const std::string& plaintext) {
     std::string ciphertext = "";
 
     for (size_t i = 0; i < plaintext.length(); i++) {
-        int charPosition;
-        
-        if (plaintext[i] == ' ') {
-            ciphertext += " ";
-            charPosition = -1;
+        if (std::isalpha(plaintext[i])) {
+            ciphertext += CIPHER_ALPHABET[abcPosition(plaintext[i])];
         } else {
-            charPosition = abcPosition(plaintext[i]);
-        }
-
-        if (charPosition >= 0 && charPosition <= 25) {
-            ciphertext += CIPHER_ALPHABET[charPosition];
-        } else if (plaintext[i] != ' ') {
             ciphertext += plaintext[i];
         }
     }
