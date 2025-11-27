@@ -39,7 +39,7 @@ std::string encrypt(const std::string& plaintext) {
 
         if (charPosition >= 0 && charPosition <= 25) {
             ciphertext += CIPHER_ALPHABET[charPosition];
-        } else {
+        } else if (plaintext[i] != ' ') {
             ciphertext += plaintext[i];
         }
     }
