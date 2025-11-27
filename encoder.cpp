@@ -35,7 +35,12 @@ std::string encrypt(const std::string& plaintext) {
             ciphertext += "   ";
         } else {
             charPosition = abcPosition(plaintext[i]);
+        }
+
+        if (charPosition >= 0 && charPosition <= 25) {
             ciphertext += CIPHER_ALPHABET[charPosition];
+        } else {
+            ciphertext += plaintext[i];
         }
     }
 
