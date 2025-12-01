@@ -1,5 +1,8 @@
 # DELTA-K Cipher Encoder
 A simple, lightweight CLI tool for encrypting plaintext messages into ciphertext via the DELTA-K cipher.
+![License](https://img.shields.io/badge/license-MIT-blue)
+![Status](https://img.shields.io/badge/status-active-success)
+![Language](https://img.shields.io/badge/language-C%2B%2B-00599C)
 
 ## What is DELTA-K?
 The DELTA-K Cipher Encoder program is, as the title suggests, based on the DELTA-K cipher. The DELTA-K cipher is a substitution cipher I created, fundamentally built on the trinary (Base-3) number system.
@@ -67,13 +70,55 @@ Delta Mode transforms DELTA-K from a simple monoalphabetic substitution cipher i
 This produces a completely different result than doing it normally, one that is significantly more difficult to decode without knowing what the key itself is. Attempting to decode the previous example's ciphertext normally would give "PGAWK IZWAL", which is obviously very different from the actual plaintext, and cannot be decrypted using simple frequency analysis.
 
 ## Features
-- Inventive Encryption: Being that this cipher is entirely custom-made, you are unlikely to find it anywhere else.
-- Ease-of-Use: As a lightweight CLI tool, this program is designed to be fast and easy to use.
-- Modularity: You can encrypt plaintext in either Standard Mode (unkeyed, monoalphabetic) or Delta Mode (keyed, alphabetic).
-- Zero Dependencies: Requires no outside libraries. All logic is handled via the Standard Library and helper functions.
+- **Inventive Encryption**: Being that this cipher is entirely custom-made, you are unlikely to find it anywhere else.
+- **Ease-of-Use**: As a lightweight CLI tool, this program is designed to be fast and easy to use.
+- **Modularity**: You can encrypt plaintext in either Standard Mode (unkeyed, monoalphabetic) or Delta Mode (keyed, alphabetic).
+- **Zero Dependencies**: Requires no outside libraries. All logic is handled via the Standard Library and helper functions.
 
-## Installation & Usage
-Lorem ipsum
+## Installation
+
+To run this program, you will need a C++ compiler (like G++, Clang, or MSVC).
+
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/agender-nerd/delta-k-cipher.git](https://github.com/agender-nerd/delta-k-cipher.git)
+   cd delta-k-cipher
+   ```
+2. **Compile the source code:**
+   ```bash
+   g++ delta-k.cpp -o delta-k
+   ```
+3. **Run the executable:**
+   - Linux/macOS: `./delta-k`
+   - Windows: `delta-k.exe`
+  
+## Usage
+
+Once running, the program will prompt you for the plaintext you wish to encrypt.
+
+### Standard Mode (Unkeyed)
+Enter `0` when prompted for a key to perform a simple monoalphabetic substitution.
+
+```text
+Please enter plaintext to encode:
+HELLO WORLD
+Enter key (0 for normal cipher):
+0
+Encoded ciphertext:
+▲◆◆▲▼◆▼▼▲▼▼▲▼◆▲/◆▼◆▼◆▲◆▲▲▼▼▲▲▼▼
+```
+
+### Delta Mode (Keyed)
+
+Enter any alphabetic text (no spaces or numbers) to use as a polyalphabetic key.
+```text
+Please enter plaintext to encode:
+HELLO WORLD
+Enter key (0 for normal cipher):
+KEY
+Encoded ciphertext:
+▼◆▼▲◆▼▲▲▼◆▼◆▼▲◆/▼▲▲◆◆◆◆▼◆▲▲▼▼▼▲
+```
 
 ## Roadmap
 Right now, this project is very barebones. It is functional, but still only a rudimentary single-execution CLI program. Below is a roadmap outlining what is done, and what I'd like to implement in the future.
@@ -81,14 +126,14 @@ Right now, this project is very barebones. It is functional, but still only a ru
 - [x] Add Delta Mode (keying) encryption functionality
 - [ ] Implement basic decryption logic
 - [ ] Add Delta Mode decryption functionality
-- [ ] Allow for encryption/decryption of whole .txt files
+- [ ] Allow for encryption/decryption of whole `.txt` files
 - [ ] Build interactive UI beyond CLI
 - [ ] Implement more advanced double-keyed encryption/decryption?
 
 Contributions towards these goals are welcome!
 
 ## License
-Lorem ipsum
+Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Attribution
 Coding: Kazy (agender-nerd)
