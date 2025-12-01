@@ -95,7 +95,7 @@ int main() {
  * corresponding sequence of 3 glyphs from the TRIT_ALPHABET.
  * * @param plaintext The source string to encrypt.
  * @return std::string The resulting string of glyphs.
- * @note Non-alphabetic characters are preserved as-is.
+ * @note Non-alphabetic characters are preserved as-is. Spaces (' ') are converted to forward slashes.
  */
 std::string encrypt(const std::string& plaintext) {
     std::string ciphertext = "";
@@ -108,6 +108,8 @@ std::string encrypt(const std::string& plaintext) {
             for (int j = 0; j < BASE; j++) {
                 ciphertext += GLYPHS[TRIT_ALPHABET[abcValue][j]]; // add the 3 corresponding glyphs to the ciphertext
             }
+        } else if (currentChar == ' ') {
+            ciphertext += '/';
         } else {
             ciphertext += currentChar;
         }
@@ -149,6 +151,8 @@ std::string encrypt(const std::string& plaintext, const std::string& key) {
             }
             
             keyIndex++; 
+        } else if (currentChar == ' ') {
+            ciphertext += '/';
         } else {
             ciphertext += currentChar;
         }
