@@ -5,7 +5,7 @@ A simple, lightweight CLI tool for encrypting plaintext messages into ciphertext
 ![Language](https://img.shields.io/badge/language-C%2B%2B-00599C)
 
 ## What is DELTA-K?
-The DELTA-K Cipher Encoder program is, as the title suggests, based on the DELTA-K cipher. The DELTA-K cipher is a substitution cipher I created, fundamentally built on the trinary (Base-3) number system.
+The DELTA-K Cipher Encoder program is, as the title suggests, based on the DELTA-K cipher. The DELTA-K cipher is a substitution cipher I created, fundamentally built on the trinary (Base-3) number system. The name is a concatenation of Delta, the Greek letter shaped like a triangle (because triangles are used frequently in the cipher), and K, the first letter of my online pseudonym, Kazy.
 
 The cipher utilizes three glyphs, ▲, ▼, and ◆, which correspond to numbers 0, 1, and 2 respectively. Every letter in the alphabet is mapped to a triplet of glyphs correspondent to that letter's trinary position in the alphabet. The following table lists all the standard alphabetical mappings:
 | Latin Letter | Alphabetical Position (Trinary) | Associated Glyphs |
