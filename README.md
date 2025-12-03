@@ -1,4 +1,4 @@
-# DELTA-K Cipher Encoder
+# DELTA-K Cipher Encoder [![starline](https://starlines.qoo.monster/assets/agender-nerd/Delta-K-Cipher-Encoder)](https://github.com/qoomon/starline)
 A simple, lightweight CLI tool for encrypting plaintext messages into ciphertext via the DELTA-K cipher.
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Status](https://img.shields.io/badge/status-active-success)
