@@ -69,12 +69,6 @@ Delta Mode transforms DELTA-K from a simple monoalphabetic substitution cipher i
 
 This produces a completely different result than doing it normally, one that is significantly more difficult to decode without knowing what the key itself is. Attempting to decode the previous example's ciphertext normally would give "PGAWK IZWAL", which is obviously very different from the actual plaintext, and cannot be decrypted using simple frequency analysis.
 
-## Features
-- **Inventive Encryption**: Being that this cipher is entirely custom-made, you are unlikely to find it anywhere else.
-- **Ease-of-Use**: As a lightweight CLI tool, this program is designed to be fast and easy to use.
-- **Modularity**: You can encrypt plaintext in either Standard Mode (unkeyed, monoalphabetic) or Delta Mode (keyed, alphabetic).
-- **Zero Dependencies**: Requires no outside libraries. All logic is handled via the Standard Library and helper functions.
-
 ## Installation
 
 To run this program, you will need a C++ compiler (like G++, Clang, or MSVC).
