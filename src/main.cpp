@@ -1,4 +1,4 @@
-#include "delta-k.hpp"
+#include "Delta_K.hpp"
 
 /**
  * @file delta-k.cpp
