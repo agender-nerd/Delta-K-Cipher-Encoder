@@ -1,5 +1,7 @@
-#ifndef DELTA-K_HPP
-#define DELTA-K_HPP
+#ifndef DELTA_K_HPP
+#define DELTA_K_HPP
+
+#include <string>
 
 /**
  * @brief The length of the standard alphabet (A-Z).
