@@ -9,5 +9,5 @@ include_directories(include)
 
 add_executable(delta-k
     src/main.cpp
-    src/delta-k.cpp
+    src/Delta_K.cpp
 )
