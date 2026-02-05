@@ -103,8 +103,9 @@ std::string decrypt(const std::string& ciphertext) {
             int glyphSeq2 = glyphVal(current2); 
             int glyphSeq3 = glyphVal(current3);
 
-            decryptedChar = static_cast<char>('A' + abcSearch(glyphSeq1, glyphSeq2, glyphSeq3));
+            decryptedChar = static_cast<char>('A' + (glyphSeq1 * BASE * BASE) + (glyphSeq2 * BASE) + glyphSeq3 - 1);
             plaintext += decryptedChar;
+
             i += (GLYPH_SIZE * 3) - 1;
         }
     }
@@ -176,21 +177,3 @@ int glyphVal(std::string c) {
     return -1;
 }
 
-/**
- * @brief Performs a reverse lookup to find the alphabet index for a specific sequence of three trits.
- * * Scans the `TRIT_ALPHABET` array to find which letter corresponds to the 
- * provided sequence of integers.
- * * @param a The first trit value (0-2).
- * @param b The second trit value (0-2).
- * @param c The third trit value (0-2).
- * @return int The 0-based index of the matching letter (0-25), or -1 if no match is found.
- */
-int abcSearch(int a, int b, int c) {
-    for (int i = 0; i < ALPHABET_LENGTH; i++) {
-        if (TRIT_ALPHABET[i][0] == a && TRIT_ALPHABET[i][1] == b && TRIT_ALPHABET[i][2] == c) {
-            return i;
-        }
-    }
-
-    return -1;
-}
