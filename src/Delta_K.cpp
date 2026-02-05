@@ -33,6 +33,12 @@ std::string encrypt(const std::string& plaintext) {
     return ciphertext;
 }
 
+std::string decrypt(const std::string& ciphertext) {
+    std::string plaintext = "";
+
+    
+}
+
 /**
  * @brief Performs polyalphabetic encryption using Base-3 modulo arithmetic (Keyed).
  * * This function implements the core "Delta-K" logic. For each letter of the plaintext:
