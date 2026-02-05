@@ -36,6 +36,13 @@ std::string encrypt(const std::string& plaintext) {
 std::string decrypt(const std::string& ciphertext) {
     std::string plaintext = "";
 
+    for (int i = 0; i < ciphertext.length(); i++) {
+        if (!isGlyph(ciphertext[i])) {
+            plaintext += ciphertext[i];
+        } else {
+
+        }
+    }
 }
 
 /**
@@ -116,4 +123,17 @@ bool isGlyph(char c) {
         return false;
     }
     return true;
+}
+
+int glyphVal(char c) {
+    switch (c) {
+        case GLYPHS[0]:
+            return 0;
+        case GLYPHS[1]:
+            return 1;
+        case GLYPHS[2]:
+            return 2;
+        default:
+            return -1;
+    }
 }

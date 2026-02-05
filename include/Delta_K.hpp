@@ -44,5 +44,6 @@ std::string decrypt(const std::string& ciphertext);
 int abcPosition(char abc);
 bool keyValidation(const std::string& key);
 bool isGlyph(char c);
+int glyphVal(char c);
 
 #endif
