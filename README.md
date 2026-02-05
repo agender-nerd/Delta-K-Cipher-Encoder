@@ -1,6 +1,7 @@
-# DELTA-K Cipher Encoder [![starline](https://starlines.qoo.monster/assets/agender-nerd/Delta-K-Cipher-Encoder)](https://github.com/qoomon/starline)
-A simple, lightweight CLI tool for encrypting plaintext messages into ciphertext via the DELTA-K cipher.
-![License](https://img.shields.io/badge/license-MIT-blue)
+
+# DELTA-K Cipher [![starline](https://starlines.qoo.monster/assets/agender-nerd/Delta-K-Cipher-Encoder)](https://github.com/qoomon/starline)
+A simple, lightweight CLI tool for encrypting and decrypting messages via the DELTA-K cipher.
+![License](https://img.shields.io/badge/license-copyleft--next-blue)
 ![Status](https://img.shields.io/badge/status-active-success)
 ![Language](https://img.shields.io/badge/language-C%2B%2B-00599C)
 
@@ -49,7 +50,7 @@ Delta Mode transforms DELTA-K from a simple monoalphabetic substitution cipher i
 >
 > KEYKE YKEYK
    
-3. Convert the plaintext and the key to their corresponding trinary values.
+2. Convert the plaintext and the key to their corresponding trinary values.
 
 > 022 012 110 110 120 | 212 120 200 110 011
 > 
@@ -71,65 +72,105 @@ This produces a completely different result than doing it normally, one that is 
 
 ## Installation
 
-To run this program, you will need a C++ compiler (like G++, Clang, or MSVC).
+To run this program, you will need a C++ compiler and **CMake**.
 
 1. **Clone the repository:**
    ```bash
    git clone [https://github.com/agender-nerd/Delta-K-Cipher-Encoder.git](https://github.com/agender-nerd/Delta-K-Cipher-Encoder.git)
    cd Delta-K-Cipher-Encoder
    ```
-2. **Compile the source code:**
+
+2. **Build with CMake:**
    ```bash
-   g++ delta-k.cpp -o delta-k
+   mkdir build
+   cd build
+   cmake ..
+   make 
    ```
+
+
+*(On Windows using Visual Studio, you can open the folder directly as a CMake project, or use `cmake --build .`)*
+
+
 3. **Run the executable:**
-   - Linux/macOS: `./delta-k`
-   - Windows: `delta-k.exe`
-  
+* Linux/macOS: `./Delta_K`
+* Windows: `Delta_K.exe`
+
+
+
 ## Usage
 
-Once running, the program will prompt you for the plaintext you wish to encrypt.
+Once running, the program will prompt you to select a mode (Encrypt or Decrypt).
 
-### Standard Mode (Unkeyed)
-Enter `0` when prompted for a key to perform a simple monoalphabetic substitution.
+### 1. Encryption
+
+You can choose between Standard Mode (Unkeyed) or Delta Mode (Keyed).
+
+**Example: Standard Mode**
 
 ```text
+1: Encrypt plaintext
+2: Decrypt ciphertext
+1
 Please enter plaintext to encode:
 HELLO WORLD
 Enter key (0 for normal cipher):
 0
 Encoded ciphertext:
 ▲◆◆▲▼◆▼▼▲▼▼▲▼◆▲/◆▼◆▼◆▲◆▲▲▼▼▲▲▼▼
+
 ```
 
-### Delta Mode (Keyed)
+**Example: Delta Mode (Keyed)**
 
-Enter any alphabetic text (no spaces or numbers) to use as a polyalphabetic key.
 ```text
+1: Encrypt plaintext
+2: Decrypt ciphertext
+1
 Please enter plaintext to encode:
 HELLO WORLD
 Enter key (0 for normal cipher):
 KEY
 Encoded ciphertext:
 ▼◆▼▲◆▼▲▲▼◆▼◆▼▲◆/▼▲▲◆◆◆◆▼◆▲▲▼▼▼▲
+
+```
+
+### 2. Decryption
+
+Currently, the tool supports decoding Standard Mode (Unkeyed) messages.
+
+```text
+1: Encrypt plaintext
+2: Decrypt ciphertext
+2
+Please enter ciphertext to decode:
+▲◆◆▲▼◆▼▼▲▼▼▲▼◆▲/◆▼◆▼◆▲◆▲▲▼▼▲▲▼▼
+Decoded plaintext:
+HELLO WORLD
+
 ```
 
 ## Roadmap
-Right now, this project is very barebones. It is functional, but still only a rudimentary single-execution CLI program. Below is a roadmap outlining what is done, and what I'd like to implement in the future.
-- [x] Implement basic encryption logic
-- [x] Add Delta Mode (keying) encryption functionality
-- [ ] Implement basic decryption logic
-- [ ] Add Delta Mode decryption functionality
-- [ ] Allow for encryption/decryption of whole `.txt` files
-- [ ] Build interactive UI beyond CLI
-- [ ] Implement more advanced double-keyed encryption/decryption?
+
+Below is a roadmap outlining what is done, and what I'd like to implement in the future.
+
+* [x] Implement basic encryption logic
+* [x] Add Delta Mode (keying) encryption functionality
+* [x] Implement basic decryption logic
+* [ ] Add Delta Mode decryption functionality
+* [ ] Allow for encryption/decryption of whole `.txt` files
+* [ ] Build interactive UI beyond CLI
+* [ ] Implement more advanced double-keyed encryption/decryption?
 
 Contributions towards these goals are welcome!
 
 ## License
-Distributed under the MIT License. See `LICENSE` for more information.
+
+Distributed under the **copyleft-next** license. See `LICENSE` for more information.
 
 ## Attribution
+
 Coding: Kazy (agender-nerd)
 
 Comments: Gemini AI
