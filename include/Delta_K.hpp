@@ -13,6 +13,8 @@ const int ALPHABET_LENGTH = 26;
  */
 const int BASE = 3;
 
+const int GLYPH_SIZE = 3;
+
 /**
  * @brief The glyphs representing the three digits of the trinary system.
  * Index 0 = ▲, Index 1 = ▼, Index 2 = ◆.
@@ -43,8 +45,8 @@ std::string decrypt(const std::string& ciphertext);
 // Helper function(s)
 int abcPosition(char abc);
 bool keyValidation(const std::string& key);
-bool isGlyph(char c);
-int glyphVal(char c);
+bool isGlyph(std::string c);
+int glyphVal(std::string c);
 int abcSearch(int a, int b, int c);
 
 #endif

@@ -18,6 +18,7 @@
 
 #include <iostream>
 #include <string>
+#include <limits>
 
 void selectEncrypt();
 void selectDecrypt();
@@ -34,7 +35,7 @@ int main() {
     std::cout << "Welcome to the DELTA-K Cipher Program!" << std::endl;
 
     do {
-        std::cout << "1: Encrypt plaintext" << std::endl << "2: Decrypt ciphertext";
+        std::cout << "1: Encrypt plaintext" << std::endl << "2: Decrypt ciphertext" << std::endl;
         std::cin >> userInput;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 

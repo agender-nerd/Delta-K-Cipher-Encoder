@@ -37,20 +37,27 @@ std::string decrypt(const std::string& ciphertext) {
     std::string plaintext = "";
 
     for (size_t i = 0; i < ciphertext.length(); i++) {
-        if (!isGlyph(ciphertext[i])) {
+        std::string current1 = ciphertext.substr(i, GLYPH_SIZE);
+
+        if (!isGlyph(current1)) {
             plaintext += ciphertext[i];
         } else {
             char decryptedChar;
 
-            int glyphSeq1 = glyphVal(ciphertext[i]);
-            int glyphSeq2 = glyphVal(ciphertext[i + 1]); 
-            int glyphSeq3 = glyphVal(ciphertext[i + 2]);
+            std::string current2 = ciphertext.substr(i + GLYPH_SIZE, GLYPH_SIZE);
+            std::string current3 = ciphertext.substr(i + (GLYPH_SIZE * 2), GLYPH_SIZE);
+
+            int glyphSeq1 = glyphVal(current1);
+            int glyphSeq2 = glyphVal(current2); 
+            int glyphSeq3 = glyphVal(current3);
 
             decryptedChar = static_cast<char>('A' + abcSearch(glyphSeq1, glyphSeq2, glyphSeq3));
             plaintext += decryptedChar;
-            i += 2;
+            i += (GLYPH_SIZE * 3) - 1;
         }
     }
+
+    return plaintext;
 }
 
 /**
@@ -126,29 +133,28 @@ bool keyValidation(const std::string& key) {
     return true;
 }
 
-bool isGlyph(char c) {
-    if (c != GLYPHS[0] && c != GLYPHS[1] && c != GLYPHS[2]) {
-        return false;
+bool isGlyph(std::string c) {
+    if (c == GLYPHS[0] || c == GLYPHS[1] || c == GLYPHS[2]) {
+        return true;
     }
-    return true;
+    return false;
 }
 
-int glyphVal(char c) {
-    switch (c) {
-        case GLYPHS[0]:
-            return 0;
-        case GLYPHS[1]:
-            return 1;
-        case GLYPHS[2]:
-            return 2;
-        default:
-            return -1;
+int glyphVal(std::string c) {
+    if (c == GLYPHS[0]) {
+        return 0;
+    } else if (c == GLYPHS[1]) {
+        return 1;
+    } else if (c == GLYPHS [2]) {
+        return 2;
     }
+
+    return -1;
 }
 
 int abcSearch(int a, int b, int c) {
     for (int i = 0; i < ALPHABET_LENGTH; i++) {
-        if (TRIT_ALPHABET[i][0] == a && TRIT_ALPHABET[i][1] == b && TRIT_ALPHABET[i][2] == b) {
+        if (TRIT_ALPHABET[i][0] == a && TRIT_ALPHABET[i][1] == b && TRIT_ALPHABET[i][2] == c) {
             return i;
         }
     }
