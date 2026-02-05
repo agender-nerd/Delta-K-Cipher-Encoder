@@ -33,33 +33,6 @@ std::string encrypt(const std::string& plaintext) {
     return ciphertext;
 }
 
-std::string decrypt(const std::string& ciphertext) {
-    std::string plaintext = "";
-
-    for (size_t i = 0; i < ciphertext.length(); i++) {
-        std::string current1 = ciphertext.substr(i, GLYPH_SIZE);
-
-        if (!isGlyph(current1)) {
-            plaintext += ciphertext[i];
-        } else {
-            char decryptedChar;
-
-            std::string current2 = ciphertext.substr(i + GLYPH_SIZE, GLYPH_SIZE);
-            std::string current3 = ciphertext.substr(i + (GLYPH_SIZE * 2), GLYPH_SIZE);
-
-            int glyphSeq1 = glyphVal(current1);
-            int glyphSeq2 = glyphVal(current2); 
-            int glyphSeq3 = glyphVal(current3);
-
-            decryptedChar = static_cast<char>('A' + abcSearch(glyphSeq1, glyphSeq2, glyphSeq3));
-            plaintext += decryptedChar;
-            i += (GLYPH_SIZE * 3) - 1;
-        }
-    }
-
-    return plaintext;
-}
-
 /**
  * @brief Performs polyalphabetic encryption using Base-3 modulo arithmetic (Keyed).
  * * This function implements the core "Delta-K" logic. For each letter of the plaintext:
@@ -104,6 +77,42 @@ std::string encrypt(const std::string& plaintext, const std::string& key) {
 }
 
 /**
+ * @brief Decodes a string of trinary glyphs back into plaintext.
+ * * Iterates through the ciphertext, identifying non-glyph characters (which are preserved)
+ * and sequences of glyphs. Valid glyph sequences are parsed in groups of three, 
+ * converted to their numeric trit values, and mapped back to their corresponding 
+ * alphabetic characters.
+ * * @param ciphertext The string of glyphs (and punctuation) to decode.
+ * @return std::string The recovered plaintext.
+ */
+std::string decrypt(const std::string& ciphertext) {
+    std::string plaintext = "";
+
+    for (size_t i = 0; i < ciphertext.length(); i++) {
+        std::string current1 = ciphertext.substr(i, GLYPH_SIZE);
+
+        if (!isGlyph(current1)) {
+            plaintext += ciphertext[i];
+        } else {
+            char decryptedChar;
+
+            std::string current2 = ciphertext.substr(i + GLYPH_SIZE, GLYPH_SIZE);
+            std::string current3 = ciphertext.substr(i + (GLYPH_SIZE * 2), GLYPH_SIZE);
+
+            int glyphSeq1 = glyphVal(current1);
+            int glyphSeq2 = glyphVal(current2); 
+            int glyphSeq3 = glyphVal(current3);
+
+            decryptedChar = static_cast<char>('A' + abcSearch(glyphSeq1, glyphSeq2, glyphSeq3));
+            plaintext += decryptedChar;
+            i += (GLYPH_SIZE * 3) - 1;
+        }
+    }
+
+    return plaintext;
+}
+
+/**
  * @brief Converts a character to its 0-indexed position in the alphabet.
  * * @param abc The character to convert.
  * @return int The position (0-25) relative to 'A'.
@@ -133,6 +142,12 @@ bool keyValidation(const std::string& key) {
     return true;
 }
 
+/**
+ * @brief Checks if a given string segment matches one of the valid cipher glyphs.
+ * * @param c The string segment (typically a single multi-byte character) to check.
+ * @return true If the string matches '▲', '▼', or '◆'.
+ * @return false If the string is not a recognized glyph.
+ */
 bool isGlyph(std::string c) {
     if (c == GLYPHS[0] || c == GLYPHS[1] || c == GLYPHS[2]) {
         return true;
@@ -140,6 +155,15 @@ bool isGlyph(std::string c) {
     return false;
 }
 
+/**
+ * @brief Converts a glyph string into its corresponding integer trit value.
+ * * Mapping:
+ * - ▲ -> 0
+ * - ▼ -> 1
+ * - ◆ -> 2
+ * * @param c The glyph string to convert.
+ * @return int The numeric value (0-2) of the glyph, or -1 if the input is invalid.
+ */
 int glyphVal(std::string c) {
     if (c == GLYPHS[0]) {
         return 0;
@@ -152,6 +176,15 @@ int glyphVal(std::string c) {
     return -1;
 }
 
+/**
+ * @brief Performs a reverse lookup to find the alphabet index for a specific sequence of three trits.
+ * * Scans the `TRIT_ALPHABET` array to find which letter corresponds to the 
+ * provided sequence of integers.
+ * * @param a The first trit value (0-2).
+ * @param b The second trit value (0-2).
+ * @param c The third trit value (0-2).
+ * @return int The 0-based index of the matching letter (0-25), or -1 if no match is found.
+ */
 int abcSearch(int a, int b, int c) {
     for (int i = 0; i < ALPHABET_LENGTH; i++) {
         if (TRIT_ALPHABET[i][0] == a && TRIT_ALPHABET[i][1] == b && TRIT_ALPHABET[i][2] == c) {

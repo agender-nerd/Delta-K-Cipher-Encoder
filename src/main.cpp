@@ -54,6 +54,12 @@ int main() {
     return 0;
 }
 
+/**
+ * @brief Handles the user interface logic for the encryption process.
+ * * Prompts the user to input plaintext and an optional key. It validates the key,
+ * selects the appropriate encryption mode (Standard or Delta-K), and outputs 
+ * the resulting ciphertext to the console.
+ */
 void selectEncrypt() {
     std::string plaintext;
     std::string ciphertext;
@@ -79,6 +85,12 @@ void selectEncrypt() {
     std::cout << ciphertext << std::endl;
 }
 
+/**
+ * @brief Handles the user interface logic for the decryption process.
+ * * Prompts the user to input the glyph-based ciphertext. It calls the decryption 
+ * function to reverse the substitution and outputs the recovered plaintext 
+ * to the console.
+ */
 void selectDecrypt() {
     std::string plaintext;
     std::string ciphertext;
