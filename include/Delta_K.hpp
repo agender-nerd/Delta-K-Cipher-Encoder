@@ -21,7 +21,7 @@ const std::string GLYPHS[BASE] = {"▲", "▼", "◆"};
 
 /**
  * @brief A 2D array mapping each letter (0-25) to its unique 3-trit representation.
- * Each row corresponds to a letter (Row 0 = 'A'), and the columns contain
+ * Each row corresponds to a letter, and the columns contain
  * the three trits (0, 1, or 2) that represent that letter.
  */
 const int TRIT_ALPHABET[ALPHABET_LENGTH][BASE] = {
@@ -45,5 +45,6 @@ int abcPosition(char abc);
 bool keyValidation(const std::string& key);
 bool isGlyph(char c);
 int glyphVal(char c);
+int abcSearch(int a, int b, int c);
 
 #endif

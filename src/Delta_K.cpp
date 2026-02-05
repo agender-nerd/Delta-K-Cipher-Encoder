@@ -36,11 +36,17 @@ std::string encrypt(const std::string& plaintext) {
 std::string decrypt(const std::string& ciphertext) {
     std::string plaintext = "";
 
-    for (int i = 0; i < ciphertext.length(); i++) {
+    for (size_t i = 0; i < ciphertext.length(); i++) {
         if (!isGlyph(ciphertext[i])) {
             plaintext += ciphertext[i];
         } else {
+            char decryptedChar;
 
+            int glyphSeq1 = glyphVal(ciphertext[i]);
+            int glyphSeq2 = glyphVal(ciphertext[i + 1]); 
+            int glyphSeq3 = glyphVal(ciphertext[i + 2]);
+
+            decryptedChar = 
         }
     }
 }
@@ -136,4 +142,14 @@ int glyphVal(char c) {
         default:
             return -1;
     }
+}
+
+int abcSearch(int a, int b, int c) {
+    for (int i = 0; i < ALPHABET_LENGTH; i++) {
+        if (TRIT_ALPHABET[i][0] == a && TRIT_ALPHABET[i][1] == b && TRIT_ALPHABET[i][2] == b) {
+            return i;
+        }
+    }
+
+    return -1;
 }
