@@ -18,6 +18,10 @@
 
 #include <iostream>
 #include <string>
+#include <limits>
+
+void selectEncrypt();
+void selectDecrypt();
 
 /**
  * @brief The main entry point for the Delta-K cipher program.
@@ -26,6 +30,37 @@
  * * @return int Execution status code.
  */
 int main() {
+    int userInput;
+
+    std::cout << "Welcome to the DELTA-K Cipher Program!" << std::endl;
+
+    do {
+        std::cout << "1: Encrypt plaintext" << std::endl << "2: Decrypt ciphertext" << std::endl;
+        std::cin >> userInput;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+        if (userInput != 1 && userInput != 2) {
+            userInput = -1;
+            std::cout << "Invalid input. Please try again" << std::endl;
+        }
+    } while (userInput == -1);
+
+    if (userInput == 1) {
+        selectEncrypt();
+    } else if (userInput == 2) {
+        selectDecrypt();
+    }
+
+    return 0;
+}
+
+/**
+ * @brief Handles the user interface logic for the encryption process.
+ * * Prompts the user to input plaintext and an optional key. It validates the key,
+ * selects the appropriate encryption mode (Standard or Delta-K), and outputs 
+ * the resulting ciphertext to the console.
+ */
+void selectEncrypt() {
     std::string plaintext;
     std::string ciphertext;
     std::string key;
@@ -48,6 +83,24 @@ int main() {
 
     std::cout << "Encoded ciphertext:" << std::endl;
     std::cout << ciphertext << std::endl;
-    return 0;
+}
+
+/**
+ * @brief Handles the user interface logic for the decryption process.
+ * * Prompts the user to input the glyph-based ciphertext. It calls the decryption 
+ * function to reverse the substitution and outputs the recovered plaintext 
+ * to the console.
+ */
+void selectDecrypt() {
+    std::string plaintext;
+    std::string ciphertext;
+
+    std::cout << "Please enter ciphertext to decode:" << std::endl;
+    std::getline(std::cin, ciphertext);
+
+    plaintext = decrypt(ciphertext);
+
+    std::cout << "Decoded plaintext:" << std::endl;
+    std::cout << plaintext << std::endl;
 }
 
