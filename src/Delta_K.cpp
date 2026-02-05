@@ -36,7 +36,6 @@ std::string encrypt(const std::string& plaintext) {
 std::string decrypt(const std::string& ciphertext) {
     std::string plaintext = "";
 
-    
 }
 
 /**
@@ -109,5 +108,12 @@ bool keyValidation(const std::string& key) {
         }
     }
 
+    return true;
+}
+
+bool isGlyph(char c) {
+    if (c != GLYPHS[0] && c != GLYPHS[1] && c != GLYPHS[2]) {
+        return false;
+    }
     return true;
 }

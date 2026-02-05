@@ -37,8 +37,12 @@ const int TRIT_ALPHABET[ALPHABET_LENGTH][BASE] = {
 std::string encrypt(const std::string& plaintext);
 std::string encrypt(const std::string& plaintext, const std::string& key);
 
+// Main decoder function
+std::string decrypt(const std::string& ciphertext);
+
 // Helper function(s)
 int abcPosition(char abc);
 bool keyValidation(const std::string& key);
+bool isGlyph(char c);
 
 #endif
