@@ -46,7 +46,9 @@ std::string decrypt(const std::string& ciphertext) {
             int glyphSeq2 = glyphVal(ciphertext[i + 1]); 
             int glyphSeq3 = glyphVal(ciphertext[i + 2]);
 
-            decryptedChar = 
+            decryptedChar = static_cast<char>('A' + abcSearch(glyphSeq1, glyphSeq2, glyphSeq3));
+            plaintext += decryptedChar;
+            i += 2;
         }
     }
 }
