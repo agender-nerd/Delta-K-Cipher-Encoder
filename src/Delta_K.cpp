@@ -67,7 +67,7 @@ std::string encrypt(const std::string& plaintext, const std::string& key) {
             
             keyIndex++; 
         } else if (currentChar == ' ') {
-            ciphertext += '/';
+            ciphertext += ' ';
         } else {
             ciphertext += currentChar;
         }
