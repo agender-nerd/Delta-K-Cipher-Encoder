@@ -24,7 +24,7 @@ std::string encrypt(const std::string& plaintext) {
                 ciphertext += GLYPHS[TRIT_ALPHABET[abcValue][j]]; // add the 3 corresponding glyphs to the ciphertext
             }
         } else if (currentChar == ' ') {
-            ciphertext += '/';
+            ciphertext += ' ';
         } else {
             ciphertext += currentChar;
         }
